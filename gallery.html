@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Marigui</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#FBFBFA;--ink:#111312;--muted:#7C807E;--line:#E5E5E2}
+  *{box-sizing:border-box;cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23FFCB3D' stroke='%23111' stroke-width='2'/%3E%3Ccircle cx='11' cy='13' r='1.8' fill='%23111'/%3E%3Ccircle cx='21' cy='13' r='1.8' fill='%23111'/%3E%3Cpath d='M10 19 Q16 24.5 22 19' stroke='%23111' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") 16 16, auto}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  h1{font-family:"Bricolage Grotesque";margin:0;line-height:.95}
+  .wrap{max-width:1360px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+  .nav{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(9px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .mark{font-family:"Bricolage Grotesque";font-weight:800;font-size:20px;letter-spacing:-.01em}
+  .nav-links{display:flex;gap:clamp(13px,1.7vw,26px);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase}
+  .nav-links a{color:var(--muted);transition:color .18s}.nav-links a:hover,.nav-links a.on{color:var(--ink)}
+  .rhead{padding:clamp(40px,7vw,96px) 0 clamp(20px,3vw,40px)}
+  .rhead .back{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .rhead h1{font-weight:700;font-size:clamp(48px,12vw,168px);letter-spacing:-.03em;margin:14px 0 0}
+  .rhead p{margin:18px 0 0;max-width:54ch;color:#42474A;font-size:clamp(15px,1.3vw,18px)}
+  .wall{padding:0 clamp(8px,1.4vw,18px) clamp(8px,1.4vw,18px);column-count:5;column-gap:clamp(8px,1.1vw,14px)}
+  .shot{break-inside:avoid;margin-bottom:clamp(8px,1.1vw,14px);position:relative;overflow:hidden;background:#ccc}
+  .ph{position:absolute;inset:0}
+  .h-s{padding-top:66%}.h-m{padding-top:100%}.h-t{padding-top:130%}.h-x{padding-top:150%}.h-w{padding-top:58%}
+  .shot .cap{position:absolute;left:0;bottom:0;padding:12px;color:#fff;font-size:12px;font-weight:500;z-index:2;opacity:0;transform:translateY(4px);transition:.3s;text-shadow:0 1px 6px rgba(0,0,0,.55)}
+  .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.42),transparent 44%);opacity:0;transition:.3s}
+  .shot:hover::after{opacity:1}.shot:hover .cap{opacity:.95;transform:none}
+  .shot:focus-visible{outline:3px solid var(--ink);outline-offset:-3px}
+  .a{background:linear-gradient(150deg,#1C3A2E,#3F7457 68%,#8CB58F)}
+  .b{background:linear-gradient(150deg,#24506B,#3E88A8 66%,#A7D2E0)}
+  .c{background:linear-gradient(150deg,#4A3B22,#8A6A38 66%,#CBA867)}
+  .d{background:linear-gradient(150deg,#2E4A3A,#5A8163 66%,#9BC29B)}
+  .foot{border-top:1px solid var(--line);margin-top:clamp(20px,3vw,40px);padding:clamp(46px,7vw,88px) 0;text-align:center}
+  .foot a{font-family:"Bricolage Grotesque";font-weight:700;font-size:clamp(26px,5vw,60px);letter-spacing:-.03em}
+  .foot a:hover{opacity:.65}
+  .foot .sub{margin-top:14px;color:var(--muted);font-size:12.5px;letter-spacing:.09em;text-transform:uppercase}
+  .lb{position:fixed;inset:0;z-index:80;background:rgba(9,12,12,.92);display:none;place-items:center;padding:24px}
+  .lb.open{display:grid}
+  .lb-inner{max-width:min(1000px,92vw);width:100%;aspect-ratio:16/10;position:relative;overflow:hidden}
+  .lb-close{position:absolute;top:16px;right:20px;background:none;border:0;color:#fff;font-size:32px;opacity:.85}
+  .lb-close:hover{opacity:1}
+  @media(max-width:1100px){.wall{column-count:4}}
+  @media(max-width:760px){.wall{column-count:3} .nav-links{gap:12px;font-size:11px}}
+  @media(max-width:460px){.wall{column-count:2}}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap">
+  <a class="mark" href="index.html">Marigui</a>
+  <div class="nav-links">
+      <a href="surf.html">Surf</a>
+    <a href="vanlife.html">Vanlife</a>
+    <a href="gallery.html" class="on">Gallery</a>
+    <a href="collabs.html">Collabs</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</div></nav>
+<header class="rhead"><div class="wrap">
+  <a class="back" href="index.html">← All works</a>
+  <h1>Gallery</h1>
+  <p>The outdoors, met on its own terms — from low-tide shorelines to mountain forests and quiet city corners.</p>
+</div></header>
+<!-- WALL — replace each <span class="ph …"> with <img src="…" alt="…"> -->
+<section class="wall">
+  <div class="shot" tabindex="0" data-t="a"><span class="ph a h-t"></span><span class="cap">Forest canopy</span></div>
+  <div class="shot" tabindex="0" data-t="b"><span class="ph b h-m"></span><span class="cap">Coastline, low tide</span></div>
+  <div class="shot" tabindex="0" data-t="c"><span class="ph c h-s"></span><span class="cap">Ridge trail</span></div>
+  <div class="shot" tabindex="0" data-t="d"><span class="ph d h-x"></span><span class="cap">Sky over the bay</span></div>
+  <div class="shot" tabindex="0" data-t="a"><span class="ph a h-m"></span><span class="cap">Dune light</span></div>
+  <div class="shot" tabindex="0" data-t="b"><span class="ph b h-t"></span><span class="cap">Waterfall, long exposure</span></div>
+  <div class="shot" tabindex="0" data-t="c"><span class="ph c h-s"></span><span class="cap">Rockpool</span></div>
+  <div class="shot" tabindex="0" data-t="d"><span class="ph d h-m"></span><span class="cap">Meadow</span></div>
+  <div class="shot" tabindex="0" data-t="a"><span class="ph a h-x"></span><span class="cap">Pines at dawn</span></div>
+  <div class="shot" tabindex="0" data-t="b"><span class="ph b h-s"></span><span class="cap">River bend</span></div>
+  <div class="shot" tabindex="0" data-t="c"><span class="ph c h-t"></span><span class="cap">Cliff edge</span></div>
+  <div class="shot" tabindex="0" data-t="d"><span class="ph d h-m"></span><span class="cap">Night market glow</span></div>
+  <div class="shot" tabindex="0" data-t="a"><span class="ph a h-s"></span><span class="cap">Alley, early morning</span></div>
+  <div class="shot" tabindex="0" data-t="b"><span class="ph b h-x"></span><span class="cap">Rooftops</span></div>
+  <div class="shot" tabindex="0" data-t="c"><span class="ph c h-t"></span><span class="cap">Field</span></div>
+  <div class="shot" tabindex="0" data-t="d"><span class="ph d h-m"></span><span class="cap">Estuary</span></div>
+  <div class="shot" tabindex="0" data-t="a"><span class="ph a h-s"></span><span class="cap">Lone tree</span></div>
+  <div class="shot" tabindex="0" data-t="b"><span class="ph b h-m"></span><span class="cap">Mist</span></div>
+  <div class="shot" tabindex="0" data-t="c"><span class="ph c h-t"></span><span class="cap">Tide pools</span></div>
+  <div class="shot" tabindex="0" data-t="d"><span class="ph d h-x"></span><span class="cap">Stone path</span></div>
+  <div class="shot" tabindex="0" data-t="a"><span class="ph a h-s"></span><span class="cap">Valley</span></div>
+</section>
+<div class="foot">
+  <a href="index.html#contact">Let's create something?</a>
+  <div class="sub">Let's talk</div>
+</div>
+<div class="lb" aria-hidden="true"><button class="lb-close" aria-label="Close">×</button>
+  <div class="lb-inner"><span class="lb-ph" style="position:absolute;inset:0"></span></div></div>
+<script>
+  const lb=document.querySelector('.lb'),ph=lb.querySelector('.lb-ph'),cl=lb.querySelector('.lb-close');
+  function op(s){ph.className='lb-ph '+(s.dataset.t||'');lb.classList.add('open');lb.setAttribute('aria-hidden','false');cl.focus()}
+  function sh(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true')}
+  document.querySelectorAll('.shot').forEach(s=>{s.addEventListener('click',()=>op(s));
+    s.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();op(s)}});});
+  cl.addEventListener('click',sh);lb.addEventListener('click',e=>{if(e.target===lb)sh()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')sh()});
+</script>
+</body>
+</html>
