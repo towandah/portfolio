@@ -16,7 +16,8 @@ os.chdir(ROOT)
 
 YEAR = "2026"
 EMAIL = "marigui@gmail.com"
-INSTAGRAM = "https://instagram.com/"
+INSTAGRAM = "https://www.instagram.com/terriendutout/"
+FORMSPREE = "https://formspree.io/f/YOUR_FORM_ID"   # <- replace with your Formspree endpoint
 
 # ---------------------------------------------------------------- sections
 # series: (file-name prefix, filter label). Several prefixes may share a label.
@@ -36,16 +37,16 @@ SECTIONS = [
          cover="img/gallery/thumbs/landscapes-fall-us-10.webp", cta="Need a landscape series?",
          series=[("landscapes-canaries", "Canary Islands"), ("landscapes-costa-rica", "Costa Rica"),
                  ("landscapes-fall-us", "US Fall"), ("landscapes-thailand", "Thailand"),
-                 ("landscapes-misc", "More")]),
+                 ("landscapes-misc", "Elsewhere")]),
     dict(slug="cities", title="Cities", teaser="Streets & skylines",
          intro="Cities walked, not toured. Bridges at golden hour, neon after dark, and the quiet corners in between.",
          cover="img/gallery/thumbs/city-new-york-13.webp", cta="A city story to tell?",
          series=[("city-boston", "Boston"), ("baseball", "Boston"), ("city-chicago", "Chicago"),
                  ("city-new-york", "New York"), ("landscapes-san-francisco", "San Francisco"),
-                 ("city-vietnam", "Vietnam"), ("city-misc", "More"), ("pastel", "More")]),
-    dict(slug="collabs", title="Collabs", teaser="Brand work",
+                 ("city-vietnam", "Vietnam"), ("pastel", "Pastel"), ("city-misc", "Elsewhere")]),
+    dict(slug="projects", title="Projects", teaser="Brand & people work",
          intro="Selected work shot for and with brands and people — on location, in natural light.",
-         cover="img/collabs/thumbs/project-martines-20.webp", cta="Want to collaborate?",
+         cover="img/projects/thumbs/project-martines-20.webp", cta="Want to collaborate?",
          series=[("project-martines", "Chez Martine"), ("project-arrose", "Arrosé"), ("project-anna", "Anna")]),
 ]
 FEATURED_PREFIX = "featured"
@@ -117,38 +118,45 @@ def lightbox():
 </html>
 """
 
-def shot(p, label, filt):
-    return (f'<figure class="shot" data-f="{filt}" data-hd="{p["hd"]}" data-cap="{html.escape(label)}">'
+# Size pattern for the walls: full / 82 % / 66 % of the column, some pushed right.
+SIZES = ["", "s-82", "", "s-66 r", "s-82 r", "", "s-66", "", "s-82", "s-66 r", "", "s-82 r"]
+
+def shot(p, label, i):
+    cls = ("shot " + SIZES[i % len(SIZES)]).strip()
+    return (f'<figure class="{cls}" data-hd="{p["hd"]}" data-cap="{html.escape(label)}">'
             f'<img src="{p["thumb"]}" width="{p["w"]}" height="{p["h"]}" loading="lazy" decoding="async" '
             f'alt="{html.escape(label)} — {p["n"]:02d}"><figcaption>{html.escape(label)}</figcaption></figure>\n')
 
 # ---------------------------------------------------------------- pages
 def build_section(sec, lib):
-    # filters, in config order, de-duplicated
-    filters = []
-    for _, label in sec["series"]:
-        if label not in [f[1] for f in filters]:
-            filters.append((slugify(label), label))
-    shots, count = [], 0
+    # group photos by label, keeping config order (several prefixes may share a label)
+    groups, order = {}, []
     for prefix, label in sec["series"]:
-        for p in lib.get(prefix, []):
-            shots.append(shot(p, label, slugify(label)))
-            count += 1
-    pill = ""
-    if len(filters) > 1:
-        btns = '<button class="on" data-f="all">All</button>' + "".join(
-            f'<button data-f="{k}">{html.escape(l)}</button>' for k, l in filters)
-        pill = f'<div class="pill"><div class="bar" id="bar">{btns}</div></div>\n'
+        if label not in groups:
+            groups[label] = []; order.append(label)
+        groups[label] += lib.get(prefix, [])
+    blocks, count = [], 0
+    for k, label in enumerate(order, 1):
+        photos = groups[label]
+        if not photos:
+            continue
+        shots = "".join(shot(p, label, count + i) for i, p in enumerate(photos))
+        count += len(photos)
+        blocks.append(f"""<section class="series" id="{slugify(label)}">
+  <div class="shead"><span>{html.escape(label)}</span><span class="dot"></span><span>{k:02d}</span></div>
+  <div class="wall">
+{shots}  </div>
+</section>
+""")
+    jump = "".join(f'<a href="#{slugify(l)}">{html.escape(l)}</a>' for l in order if groups[l])
     page = head(f"{sec['title']} — Marigui", sec["intro"]) + topnav(sec["slug"]) + f"""
 <section class="rhead"><div class="wrap">
   <a class="back" href="index.html">← All works</a>
   <h1>{sec['title']}</h1>
   <p>{html.escape(sec['intro'])}</p>
-  <div class="meta">{count} photos</div>
+  <nav class="jump">{jump}</nav>
 </div></section>
-{pill}<section class="wall" id="wall">
-{''.join(shots)}</section>
-<div class="foot">
+{''.join(blocks)}<div class="foot">
   <a href="index.html#contact">{html.escape(sec['cta'])}</a>
   <div class="sub">Let's talk</div>
 </div>
@@ -162,7 +170,7 @@ def build_home(lib):
         f'<a class="tile" href="{s["slug"]}.html"><img src="{s["cover"]}" alt="{s["title"]}" loading="{"eager" if i < 3 else "lazy"}">'
         f'<span class="label"><span class="t">{s["title"]}</span><span class="c">{html.escape(s["teaser"])}</span></span></a>\n'
         for i, s in enumerate(SECTIONS))
-    featured = "".join(shot(p, "Selected", "all") for p in lib.get(FEATURED_PREFIX, []))
+    featured = "".join(shot(p, "Selected", i) for i, p in enumerate(lib.get(FEATURED_PREFIX, [])))
     foot_links = "".join(f'<a href="{s["slug"]}.html">{s["title"]}</a>' for s in SECTIONS)
     page = head("Marigui — Travel photographer & filmmaker",
                 "Surf, vanlife, landscapes and cities — photo and video shot slow, on location.") + topnav(home=True) + f"""
@@ -177,12 +185,14 @@ def build_home(lib):
 <section class="selected"><div class="wrap">
   <div class="allworks"><span>Selected</span><span class="dot"></span><span>A few favourites</span></div>
 </div>
-<div class="wall sel" id="wall">
+<div class="wall sel">
 {featured}</div></section>
 
 <section class="about" id="about"><div class="wrap"><div class="row">
-  <!-- Portrait: drop a file at img/me.webp (portrait format) and it shows up here -->
-  <div class="portrait">{'<img src="img/me.webp" alt="Marigui">' if os.path.exists('img/me.webp') else '<span class="ph"></span>'}</div>
+  <div class="portraits">
+    <img src="img/me-1.webp" alt="Marigui" loading="lazy" width="1067" height="1600">
+    <img src="img/me-2.webp" alt="Marigui" loading="lazy" width="1067" height="1600">
+  </div>
   <div>
     <h2>I photograph the road, at eye level.</h2>
     <p>Surf, vanlife, wild places and cities — shot slow. Images made on location, off the beaten path, and edited with care.</p>
@@ -199,7 +209,19 @@ def build_home(lib):
 </div></section>
 
 <footer id="contact"><div class="wrap">
-  <a class="cta" href="mailto:{EMAIL}?subject=Collaboration">Let's talk →</a>
+  <div class="talk">
+    <div>
+      <h2 class="cta">Let's talk →</h2>
+      <p class="lead">A brand, a trip, a story to shoot? Drop me a line.</p>
+    </div>
+    <form class="cform" action="{FORMSPREE}" method="POST">
+      <label>Name<input type="text" name="name" required autocomplete="name"></label>
+      <label>Email<input type="email" name="email" required autocomplete="email"></label>
+      <label>Message<textarea name="message" rows="5" required></textarea></label>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
+      <button type="submit">Send</button>
+    </form>
+  </div>
   <div class="cols">
     <div><div class="h">Contact</div>
       <a href="mailto:{EMAIL}">{EMAIL}</a>
