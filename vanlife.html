@@ -4,106 +4,130 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vanlife — Marigui</title>
+<meta name="description" content="Home is wherever we park. Slow mornings, long roads and the small rituals of living in a few square metres.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{--paper:#FBFBFA;--ink:#111312;--muted:#7C807E;--line:#E5E5E2}
-  *{box-sizing:border-box;cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23FFCB3D' stroke='%23111' stroke-width='2'/%3E%3Ccircle cx='11' cy='13' r='1.8' fill='%23111'/%3E%3Ccircle cx='21' cy='13' r='1.8' fill='%23111'/%3E%3Cpath d='M10 19 Q16 24.5 22 19' stroke='%23111' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") 16 16, auto}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  h1{font-family:"Bricolage Grotesque";margin:0;line-height:.95}
-  .wrap{max-width:1360px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
-  .nav{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(9px);border-bottom:1px solid var(--line)}
-  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
-  .mark{font-family:"Bricolage Grotesque";font-weight:800;font-size:20px;letter-spacing:-.01em}
-  .nav-links{display:flex;gap:clamp(13px,1.7vw,26px);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase}
-  .nav-links a{color:var(--muted);transition:color .18s}.nav-links a:hover,.nav-links a.on{color:var(--ink)}
-  .rhead{padding:clamp(40px,7vw,96px) 0 clamp(20px,3vw,40px)}
-  .rhead .back{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-  .rhead h1{font-weight:700;font-size:clamp(48px,12vw,168px);letter-spacing:-.03em;margin:14px 0 0}
-  .rhead p{margin:18px 0 0;max-width:54ch;color:#42474A;font-size:clamp(15px,1.3vw,18px)}
-  .wall{padding:0 clamp(8px,1.4vw,18px) clamp(8px,1.4vw,18px);column-count:5;column-gap:clamp(8px,1.1vw,14px)}
-  .shot{break-inside:avoid;margin-bottom:clamp(8px,1.1vw,14px);position:relative;overflow:hidden;background:#ccc}
-  .ph{position:absolute;inset:0}
-  .h-s{padding-top:66%}.h-m{padding-top:100%}.h-t{padding-top:130%}.h-x{padding-top:150%}.h-w{padding-top:58%}
-  .shot .cap{position:absolute;left:0;bottom:0;padding:12px;color:#fff;font-size:12px;font-weight:500;z-index:2;opacity:0;transform:translateY(4px);transition:.3s;text-shadow:0 1px 6px rgba(0,0,0,.55)}
-  .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.42),transparent 44%);opacity:0;transition:.3s}
-  .shot:hover::after{opacity:1}.shot:hover .cap{opacity:.95;transform:none}
-  .shot:focus-visible{outline:3px solid var(--ink);outline-offset:-3px}
-  .a{background:linear-gradient(150deg,#5A3E24,#A9793F 65%,#DCB877)}
-  .b{background:linear-gradient(150deg,#3A2E22,#6E5233 68%,#B08A57)}
-  .c{background:linear-gradient(150deg,#703A2A,#B4653F 65%,#E0A878)}
-  .d{background:linear-gradient(150deg,#2A2622,#5A4A3A 68%,#9E8666)}
-  .foot{border-top:1px solid var(--line);margin-top:clamp(20px,3vw,40px);padding:clamp(46px,7vw,88px) 0;text-align:center}
-  .foot a{font-family:"Bricolage Grotesque";font-weight:700;font-size:clamp(26px,5vw,60px);letter-spacing:-.03em}
-  .foot a:hover{opacity:.65}
-  .foot .sub{margin-top:14px;color:var(--muted);font-size:12.5px;letter-spacing:.09em;text-transform:uppercase}
-  .lb{position:fixed;inset:0;z-index:80;background:rgba(9,12,12,.92);display:none;place-items:center;padding:24px}
-  .lb.open{display:grid}
-  .lb-inner{max-width:min(1000px,92vw);width:100%;aspect-ratio:16/10;position:relative;overflow:hidden}
-  .lb-close{position:absolute;top:16px;right:20px;background:none;border:0;color:#fff;font-size:32px;opacity:.85}
-  .lb-close:hover{opacity:1}
-  @media(max-width:1100px){.wall{column-count:4}}
-  @media(max-width:760px){.wall{column-count:3} .nav-links{gap:12px;font-size:11px}}
-  @media(max-width:460px){.wall{column-count:2}}
-  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<nav class="nav"><div class="wrap">
+<header class="nav" id="nav"><div class="wrap">
   <a class="mark" href="index.html">Marigui</a>
-  <div class="nav-links">
-      <a href="surf.html">Surf</a>
-    <a href="vanlife.html" class="on">Vanlife</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="collabs.html">Collabs</a>
-    <a href="index.html#contact">Contact</a>
-  </div>
-</div></nav>
-<header class="rhead"><div class="wrap">
+  <nav class="links"><a href="surf.html">Surf</a><a href="vanlife.html" class=on>Vanlife</a><a href="landscapes.html">Landscapes</a><a href="cities.html">Cities</a><a href="collabs.html">Collabs</a><a href="index.html#about">About</a></nav>
+  <a class="contact" href="index.html#contact">Contact</a>
+  <button class="navtoggle" aria-label="Menu" aria-expanded="false">Menu</button>
+</div></header>
+
+<section class="rhead"><div class="wrap">
   <a class="back" href="index.html">← All works</a>
   <h1>Vanlife</h1>
-  <p>Home on wheels and the road ahead. Slow mornings, doors open on the view, and the freedom of the next bend.</p>
-</div></header>
-<!-- WALL — replace each <span class="ph …"> with <img src="…" alt="…"> -->
-<section class="wall">
-  <div class="shot" tabindex="0" data-t="a"><span class="ph a h-t"></span><span class="cap">Morning, doors open</span></div>
-  <div class="shot" tabindex="0" data-t="b"><span class="ph b h-m"></span><span class="cap">Fitted interior</span></div>
-  <div class="shot" tabindex="0" data-t="c"><span class="ph c h-s"></span><span class="cap">Coastal road, golden hour</span></div>
-  <div class="shot" tabindex="0" data-t="d"><span class="ph d h-x"></span><span class="cap">Coffee on the bumper</span></div>
-  <div class="shot" tabindex="0" data-t="a"><span class="ph a h-m"></span><span class="cap">Camp at dusk</span></div>
-  <div class="shot" tabindex="0" data-t="b"><span class="ph b h-t"></span><span class="cap">Map on the dash</span></div>
-  <div class="shot" tabindex="0" data-t="c"><span class="ph c h-s"></span><span class="cap">Detour</span></div>
-  <div class="shot" tabindex="0" data-t="d"><span class="ph d h-m"></span><span class="cap">Sunset window</span></div>
-  <div class="shot" tabindex="0" data-t="a"><span class="ph a h-x"></span><span class="cap">Cooking outside</span></div>
-  <div class="shot" tabindex="0" data-t="b"><span class="ph b h-s"></span><span class="cap">Sleeping bag light</span></div>
-  <div class="shot" tabindex="0" data-t="c"><span class="ph c h-t"></span><span class="cap">Gravel track</span></div>
-  <div class="shot" tabindex="0" data-t="d"><span class="ph d h-m"></span><span class="cap">Rearview</span></div>
-  <div class="shot" tabindex="0" data-t="a"><span class="ph a h-s"></span><span class="cap">Parked by the sea</span></div>
-  <div class="shot" tabindex="0" data-t="b"><span class="ph b h-x"></span><span class="cap">Rain on the roof</span></div>
-  <div class="shot" tabindex="0" data-t="c"><span class="ph c h-t"></span><span class="cap">First light</span></div>
-  <div class="shot" tabindex="0" data-t="d"><span class="ph d h-m"></span><span class="cap">Boots by the door</span></div>
-  <div class="shot" tabindex="0" data-t="a"><span class="ph a h-s"></span><span class="cap">The next bend</span></div>
-  <div class="shot" tabindex="0" data-t="b"><span class="ph b h-m"></span><span class="cap">Fireside</span></div>
-  <div class="shot" tabindex="0" data-t="c"><span class="ph c h-t"></span><span class="cap">Laundry line</span></div>
-  <div class="shot" tabindex="0" data-t="d"><span class="ph d h-x"></span><span class="cap">Night sky</span></div>
-  <div class="shot" tabindex="0" data-t="a"><span class="ph a h-s"></span><span class="cap">Fuel stop</span></div>
+  <p>Home is wherever we park. Slow mornings, long roads and the small rituals of living in a few square metres.</p>
+  <div class="meta">91 photos</div>
+</div></section>
+<div class="pill"><div class="bar" id="bar"><button class="on" data-f="all">All</button><button data-f="bardenas">Bardenas</button><button data-f="ireland">Ireland</button><button data-f="us-east-coast">US East Coast</button><button data-f="us-west-coast">US West Coast</button><button data-f="national-parks">National Parks</button></div></div>
+<section class="wall" id="wall">
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-01.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-01.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 01"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-02.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-02.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 02"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-03.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-03.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 03"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-04.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-04.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 04"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-05.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-05.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 05"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-06.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-06.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 06"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-07.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-07.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 07"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-08.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-08.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 08"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-09.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-09.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 09"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-10.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-10.webp" width="1200" height="675" loading="lazy" decoding="async" alt="Bardenas — 10"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-11.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-11.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 11"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-12.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-12.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 12"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-13.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-13.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 13"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-14.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-14.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 14"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-15.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-15.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 15"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-16.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-16.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 16"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-17.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-17.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 17"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-18.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-18.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 18"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-19.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-19.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 19"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-20.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-20.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 20"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="bardenas" data-hd="img/vanlife/vanlife-bardenas-21.webp" data-cap="Bardenas"><img src="img/vanlife/thumbs/vanlife-bardenas-21.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Bardenas — 21"><figcaption>Bardenas</figcaption></figure>
+<figure class="shot" data-f="ireland" data-hd="img/vanlife/vanlife-ireland-01.webp" data-cap="Ireland"><img src="img/vanlife/thumbs/vanlife-ireland-01.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Ireland — 01"><figcaption>Ireland</figcaption></figure>
+<figure class="shot" data-f="ireland" data-hd="img/vanlife/vanlife-ireland-02.webp" data-cap="Ireland"><img src="img/vanlife/thumbs/vanlife-ireland-02.webp" width="802" height="1200" loading="lazy" decoding="async" alt="Ireland — 02"><figcaption>Ireland</figcaption></figure>
+<figure class="shot" data-f="ireland" data-hd="img/vanlife/vanlife-ireland-03.webp" data-cap="Ireland"><img src="img/vanlife/thumbs/vanlife-ireland-03.webp" width="802" height="1200" loading="lazy" decoding="async" alt="Ireland — 03"><figcaption>Ireland</figcaption></figure>
+<figure class="shot" data-f="ireland" data-hd="img/vanlife/vanlife-ireland-04.webp" data-cap="Ireland"><img src="img/vanlife/thumbs/vanlife-ireland-04.webp" width="677" height="1200" loading="lazy" decoding="async" alt="Ireland — 04"><figcaption>Ireland</figcaption></figure>
+<figure class="shot" data-f="ireland" data-hd="img/vanlife/vanlife-ireland-05.webp" data-cap="Ireland"><img src="img/vanlife/thumbs/vanlife-ireland-05.webp" width="730" height="628" loading="lazy" decoding="async" alt="Ireland — 05"><figcaption>Ireland</figcaption></figure>
+<figure class="shot" data-f="ireland" data-hd="img/vanlife/vanlife-ireland-06.webp" data-cap="Ireland"><img src="img/vanlife/thumbs/vanlife-ireland-06.webp" width="800" height="1200" loading="lazy" decoding="async" alt="Ireland — 06"><figcaption>Ireland</figcaption></figure>
+<figure class="shot" data-f="ireland" data-hd="img/vanlife/vanlife-ireland-07.webp" data-cap="Ireland"><img src="img/vanlife/thumbs/vanlife-ireland-07.webp" width="675" height="1200" loading="lazy" decoding="async" alt="Ireland — 07"><figcaption>Ireland</figcaption></figure>
+<figure class="shot" data-f="ireland" data-hd="img/vanlife/vanlife-ireland-08.webp" data-cap="Ireland"><img src="img/vanlife/thumbs/vanlife-ireland-08.webp" width="683" height="1200" loading="lazy" decoding="async" alt="Ireland — 08"><figcaption>Ireland</figcaption></figure>
+<figure class="shot" data-f="ireland" data-hd="img/vanlife/vanlife-ireland-09.webp" data-cap="Ireland"><img src="img/vanlife/thumbs/vanlife-ireland-09.webp" width="677" height="1200" loading="lazy" decoding="async" alt="Ireland — 09"><figcaption>Ireland</figcaption></figure>
+<figure class="shot" data-f="ireland" data-hd="img/vanlife/vanlife-ireland-10.webp" data-cap="Ireland"><img src="img/vanlife/thumbs/vanlife-ireland-10.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Ireland — 10"><figcaption>Ireland</figcaption></figure>
+<figure class="shot" data-f="ireland" data-hd="img/vanlife/vanlife-ireland-11.webp" data-cap="Ireland"><img src="img/vanlife/thumbs/vanlife-ireland-11.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Ireland — 11"><figcaption>Ireland</figcaption></figure>
+<figure class="shot" data-f="ireland" data-hd="img/vanlife/vanlife-ireland-12.webp" data-cap="Ireland"><img src="img/vanlife/thumbs/vanlife-ireland-12.webp" width="800" height="1200" loading="lazy" decoding="async" alt="Ireland — 12"><figcaption>Ireland</figcaption></figure>
+<figure class="shot" data-f="ireland" data-hd="img/vanlife/vanlife-ireland-13.webp" data-cap="Ireland"><img src="img/vanlife/thumbs/vanlife-ireland-13.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Ireland — 13"><figcaption>Ireland</figcaption></figure>
+<figure class="shot" data-f="us-east-coast" data-hd="img/vanlife/vanlife-east-coast-01.webp" data-cap="US East Coast"><img src="img/vanlife/thumbs/vanlife-east-coast-01.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US East Coast — 01"><figcaption>US East Coast</figcaption></figure>
+<figure class="shot" data-f="us-east-coast" data-hd="img/vanlife/vanlife-east-coast-02.webp" data-cap="US East Coast"><img src="img/vanlife/thumbs/vanlife-east-coast-02.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US East Coast — 02"><figcaption>US East Coast</figcaption></figure>
+<figure class="shot" data-f="us-east-coast" data-hd="img/vanlife/vanlife-east-coast-03.webp" data-cap="US East Coast"><img src="img/vanlife/thumbs/vanlife-east-coast-03.webp" width="1200" height="900" loading="lazy" decoding="async" alt="US East Coast — 03"><figcaption>US East Coast</figcaption></figure>
+<figure class="shot" data-f="us-east-coast" data-hd="img/vanlife/vanlife-east-coast-04.webp" data-cap="US East Coast"><img src="img/vanlife/thumbs/vanlife-east-coast-04.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US East Coast — 04"><figcaption>US East Coast</figcaption></figure>
+<figure class="shot" data-f="us-east-coast" data-hd="img/vanlife/vanlife-east-coast-05.webp" data-cap="US East Coast"><img src="img/vanlife/thumbs/vanlife-east-coast-05.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US East Coast — 05"><figcaption>US East Coast</figcaption></figure>
+<figure class="shot" data-f="us-east-coast" data-hd="img/vanlife/vanlife-east-coast-06.webp" data-cap="US East Coast"><img src="img/vanlife/thumbs/vanlife-east-coast-06.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US East Coast — 06"><figcaption>US East Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-01.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-01.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US West Coast — 01"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-02.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-02.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US West Coast — 02"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-03.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-03.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US West Coast — 03"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-04.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-04.webp" width="1200" height="900" loading="lazy" decoding="async" alt="US West Coast — 04"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-05.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-05.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US West Coast — 05"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-06.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-06.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US West Coast — 06"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-07.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-07.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US West Coast — 07"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-08.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-08.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US West Coast — 08"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-09.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-09.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US West Coast — 09"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-10.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-10.webp" width="968" height="1200" loading="lazy" decoding="async" alt="US West Coast — 10"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-11.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-11.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US West Coast — 11"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-12.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-12.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US West Coast — 12"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-13.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-13.webp" width="975" height="1200" loading="lazy" decoding="async" alt="US West Coast — 13"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-14.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-14.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US West Coast — 14"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-15.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-15.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US West Coast — 15"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="us-west-coast" data-hd="img/vanlife/vanlife-west-coast-16.webp" data-cap="US West Coast"><img src="img/vanlife/thumbs/vanlife-west-coast-16.webp" width="900" height="1200" loading="lazy" decoding="async" alt="US West Coast — 16"><figcaption>US West Coast</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-01.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-01.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 01"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-02.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-02.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 02"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-03.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-03.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 03"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-04.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-04.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 04"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-05.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-05.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 05"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-06.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-06.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 06"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-07.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-07.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 07"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-08.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-08.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 08"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-09.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-09.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 09"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-10.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-10.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 10"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-11.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-11.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 11"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-12.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-12.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 12"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-13.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-13.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 13"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-14.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-14.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 14"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-15.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-15.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 15"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-16.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-16.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 16"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-17.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-17.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 17"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-18.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-18.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 18"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-19.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-19.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 19"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-20.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-20.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 20"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-21.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-21.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 21"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-22.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-22.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 22"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-23.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-23.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 23"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-24.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-24.webp" width="824" height="1200" loading="lazy" decoding="async" alt="National Parks — 24"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-25.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-25.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 25"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-26.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-26.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 26"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-27.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-27.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 27"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-28.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-28.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 28"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-29.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-29.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 29"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-30.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-30.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 30"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-31.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-31.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 31"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-32.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-32.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 32"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-33.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-33.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 33"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-34.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-34.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 34"><figcaption>National Parks</figcaption></figure>
+<figure class="shot" data-f="national-parks" data-hd="img/vanlife/vanlife-national-parks-35.webp" data-cap="National Parks"><img src="img/vanlife/thumbs/vanlife-national-parks-35.webp" width="900" height="1200" loading="lazy" decoding="async" alt="National Parks — 35"><figcaption>National Parks</figcaption></figure>
 </section>
 <div class="foot">
-  <a href="index.html#contact">A vanlife collab?</a>
+  <a href="index.html#contact">A road trip to shoot?</a>
   <div class="sub">Let's talk</div>
 </div>
-<div class="lb" aria-hidden="true"><button class="lb-close" aria-label="Close">×</button>
-  <div class="lb-inner"><span class="lb-ph" style="position:absolute;inset:0"></span></div></div>
-<script>
-  const lb=document.querySelector('.lb'),ph=lb.querySelector('.lb-ph'),cl=lb.querySelector('.lb-close');
-  function op(s){ph.className='lb-ph '+(s.dataset.t||'');lb.classList.add('open');lb.setAttribute('aria-hidden','false');cl.focus()}
-  function sh(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true')}
-  document.querySelectorAll('.shot').forEach(s=>{s.addEventListener('click',()=>op(s));
-    s.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();op(s)}});});
-  cl.addEventListener('click',sh);lb.addEventListener('click',e=>{if(e.target===lb)sh()});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')sh()});
-</script>
+<div class="lb" id="lb" aria-hidden="true" role="dialog" aria-label="Photo viewer">
+  <button class="lb-x" aria-label="Close">×</button>
+  <button class="lb-prev" aria-label="Previous">←</button>
+  <button class="lb-next" aria-label="Next">→</button>
+  <figure><img id="lbimg" alt=""><figcaption><span id="lbcap"></span><span id="lbnum"></span></figcaption></figure>
+</div>
+<script src="assets/site.js"></script>
 </body>
 </html>

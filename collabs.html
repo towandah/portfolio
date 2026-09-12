@@ -4,129 +4,87 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Collabs — Marigui</title>
+<meta name="description" content="Selected work shot for and with brands and people — on location, in natural light.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{--paper:#FBFBFA;--ink:#111312;--muted:#7C807E;--line:#E5E5E2}
-  *{box-sizing:border-box;
-    cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23FFCB3D' stroke='%23111' stroke-width='2'/%3E%3Ccircle cx='11' cy='13' r='1.8' fill='%23111'/%3E%3Ccircle cx='21' cy='13' r='1.8' fill='%23111'/%3E%3Cpath d='M10 19 Q16 24.5 22 19' stroke='%23111' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") 16 16, auto}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  h1{font-family:"Bricolage Grotesque";margin:0;line-height:.95}
-  .wrap{max-width:1360px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
-  .nav{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(9px);border-bottom:1px solid var(--line)}
-  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
-  .mark{font-family:"Bricolage Grotesque";font-weight:800;font-size:20px;letter-spacing:-.01em}
-  .nav-links{display:flex;gap:clamp(13px,1.7vw,26px);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase}
-  .nav-links a{color:var(--muted);transition:color .18s}.nav-links a:hover,.nav-links a.on{color:var(--ink)}
-  .rhead{padding:clamp(40px,7vw,96px) 0 clamp(16px,2vw,28px);text-align:center}
-  .rhead h1{font-weight:700;font-size:clamp(48px,12vw,168px);letter-spacing:-.03em}
-  .rhead p{margin:18px auto 0;max-width:52ch;color:#42474A;font-size:clamp(15px,1.3vw,18px)}
-
-  /* Floating sub-rubric pill (like Infinite Folio) */
-  .pill{position:sticky;top:78px;z-index:35;display:flex;justify-content:center;margin:clamp(18px,3vw,34px) 0 clamp(20px,3vw,38px)}
-  .pill .bar{display:inline-flex;gap:4px;background:var(--ink);padding:6px;border-radius:999px;
-    box-shadow:0 10px 30px rgba(0,0,0,.16)}
-  .pill button{background:none;border:0;color:#B9BEBC;font:inherit;font-size:12.5px;letter-spacing:.05em;
-    padding:9px 16px;border-radius:999px;transition:.2s}
-  .pill button:hover{color:#fff}
-  .pill button.on{background:#fff;color:var(--ink)}
-
-  .wall{padding:0 clamp(8px,1.4vw,18px) clamp(8px,1.4vw,18px);column-count:5;column-gap:clamp(8px,1.1vw,14px)}
-  .shot{break-inside:avoid;margin-bottom:clamp(8px,1.1vw,14px);position:relative;overflow:hidden;background:#ccc}
-  .ph{position:absolute;inset:0}
-  .h-s{padding-top:66%}.h-m{padding-top:100%}.h-t{padding-top:130%}.h-x{padding-top:150%}.h-w{padding-top:58%}
-  .shot .cap{position:absolute;left:0;bottom:0;padding:12px;color:#fff;font-size:12px;font-weight:500;z-index:2;opacity:0;transform:translateY(4px);transition:.3s;text-shadow:0 1px 6px rgba(0,0,0,.55)}
-  .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.42),transparent 44%);opacity:0;transition:.3s}
-  .shot:hover::after{opacity:1}.shot:hover .cap{opacity:.95;transform:none}
-  .shot:focus-visible{outline:3px solid var(--ink);outline-offset:-3px}
-  .surf{background:linear-gradient(150deg,#0E5C63,#2E8F92 65%,#8FD1CE)}
-  .van{background:linear-gradient(150deg,#5A3E24,#A9793F 65%,#DCB877)}
-  .out{background:linear-gradient(150deg,#1C3A2E,#3F7457 68%,#8CB58F)}
-
-  .foot{border-top:1px solid var(--line);margin-top:clamp(20px,3vw,40px);padding:clamp(46px,7vw,88px) 0;text-align:center}
-  .foot a{font-family:"Bricolage Grotesque";font-weight:700;font-size:clamp(26px,5vw,60px);letter-spacing:-.03em}
-  .foot a:hover{opacity:.65}.foot .sub{margin-top:14px;color:var(--muted);font-size:12.5px;letter-spacing:.09em;text-transform:uppercase}
-  .lb{position:fixed;inset:0;z-index:80;background:rgba(9,12,12,.92);display:none;place-items:center;padding:24px}
-  .lb.open{display:grid}.lb-inner{max-width:min(1000px,92vw);width:100%;aspect-ratio:16/10;position:relative;overflow:hidden}
-  .lb-close{position:absolute;top:16px;right:20px;background:none;border:0;color:#fff;font-size:32px;opacity:.85}.lb-close:hover{opacity:1}
-  @media(max-width:1100px){.wall{column-count:4}}
-  @media(max-width:760px){.wall{column-count:3}.nav-links{gap:12px;font-size:11px}.pill{top:70px}}
-  @media(max-width:460px){.wall{column-count:2}}
-  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<nav class="nav"><div class="wrap">
+<header class="nav" id="nav"><div class="wrap">
   <a class="mark" href="index.html">Marigui</a>
-  <div class="nav-links">
-    <a href="surf.html">Surf</a>
-    <a href="vanlife.html">Vanlife</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="collabs.html" class="on">Collabs</a>
-    <a href="index.html#contact">Contact</a>
-  </div>
-</div></nav>
-
-<header class="rhead"><div class="wrap">
-  <h1>Collabs</h1>
-  <p>Selected work shot for and with brands.</p>
+  <nav class="links"><a href="surf.html">Surf</a><a href="vanlife.html">Vanlife</a><a href="landscapes.html">Landscapes</a><a href="cities.html">Cities</a><a href="collabs.html" class=on>Collabs</a><a href="index.html#about">About</a></nav>
+  <a class="contact" href="index.html#contact">Contact</a>
+  <button class="navtoggle" aria-label="Menu" aria-expanded="false">Menu</button>
 </div></header>
 
-<!-- Floating sub-rubrics — rename these to brand names when you have them -->
-<div class="pill"><div class="bar" id="bar">
-  <button class="on" data-f="all">All</button>
-  <button data-f="surf">Surf</button>
-  <button data-f="van">Vanlife</button>
-  <button data-f="out">Outdoor</button>
-</div></div>
-
-<!-- WALL — replace each <span class="ph …"> with <img src="…" alt="…"> -->
+<section class="rhead"><div class="wrap">
+  <a class="back" href="index.html">← All works</a>
+  <h1>Collabs</h1>
+  <p>Selected work shot for and with brands and people — on location, in natural light.</p>
+  <div class="meta">48 photos</div>
+</div></section>
+<div class="pill"><div class="bar" id="bar"><button class="on" data-f="all">All</button><button data-f="chez-martine">Chez Martine</button><button data-f="arros">Arrosé</button><button data-f="anna">Anna</button></div></div>
 <section class="wall" id="wall">
-  <div class="shot" tabindex="0" data-cat="surf" data-t="surf"><span class="ph surf h-t"></span><span class="cap">Surf brand · lookbook</span></div>
-  <div class="shot" tabindex="0" data-cat="van" data-t="van"><span class="ph van h-m"></span><span class="cap">Van outfitter · campaign</span></div>
-  <div class="shot" tabindex="0" data-cat="out" data-t="out"><span class="ph out h-s"></span><span class="cap">Outdoor gear · editorial</span></div>
-  <div class="shot" tabindex="0" data-cat="surf" data-t="surf"><span class="ph surf h-x"></span><span class="cap">Wetsuit · product</span></div>
-  <div class="shot" tabindex="0" data-cat="out" data-t="out"><span class="ph out h-m"></span><span class="cap">Trail brand · story</span></div>
-  <div class="shot" tabindex="0" data-cat="van" data-t="van"><span class="ph van h-t"></span><span class="cap">Rental co. · social</span></div>
-  <div class="shot" tabindex="0" data-cat="surf" data-t="surf"><span class="ph surf h-s"></span><span class="cap">Boardshorts · lifestyle</span></div>
-  <div class="shot" tabindex="0" data-cat="out" data-t="out"><span class="ph out h-x"></span><span class="cap">Tourism board · feature</span></div>
-  <div class="shot" tabindex="0" data-cat="van" data-t="van"><span class="ph van h-s"></span><span class="cap">Cooler brand · shoot</span></div>
-  <div class="shot" tabindex="0" data-cat="surf" data-t="surf"><span class="ph surf h-m"></span><span class="cap">Surf camp · reportage</span></div>
-  <div class="shot" tabindex="0" data-cat="out" data-t="out"><span class="ph out h-t"></span><span class="cap">Backpack · campaign</span></div>
-  <div class="shot" tabindex="0" data-cat="van" data-t="van"><span class="ph van h-m"></span><span class="cap">Coffee brand · road trip</span></div>
-  <div class="shot" tabindex="0" data-cat="surf" data-t="surf"><span class="ph surf h-w"></span><span class="cap">Eyewear · lifestyle</span></div>
-  <div class="shot" tabindex="0" data-cat="out" data-t="out"><span class="ph out h-s"></span><span class="cap">Apparel · editorial</span></div>
-  <div class="shot" tabindex="0" data-cat="van" data-t="van"><span class="ph van h-x"></span><span class="cap">Solar kit · product</span></div>
-  <div class="shot" tabindex="0" data-cat="surf" data-t="surf"><span class="ph surf h-t"></span><span class="cap">Sunscreen · campaign</span></div>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-01.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-01.webp" width="623" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 01"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-02.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-02.webp" width="863" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 02"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-03.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-03.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 03"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-04.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-04.webp" width="1200" height="900" loading="lazy" decoding="async" alt="Chez Martine — 04"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-05.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-05.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 05"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-06.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-06.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 06"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-07.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-07.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 07"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-08.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-08.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 08"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-09.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-09.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 09"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-10.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-10.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 10"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-11.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-11.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 11"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-12.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-12.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 12"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-13.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-13.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 13"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-14.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-14.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 14"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-15.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-15.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 15"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-16.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-16.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 16"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-17.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-17.webp" width="1200" height="840" loading="lazy" decoding="async" alt="Chez Martine — 17"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-18.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-18.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 18"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-19.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-19.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 19"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-20.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-20.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 20"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-21.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-21.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 21"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-22.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-22.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 22"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-23.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-23.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 23"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-24.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-24.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 24"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-25.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-25.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 25"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-26.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-26.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 26"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-27.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-27.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 27"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="chez-martine" data-hd="img/collabs/project-martines-28.webp" data-cap="Chez Martine"><img src="img/collabs/thumbs/project-martines-28.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Chez Martine — 28"><figcaption>Chez Martine</figcaption></figure>
+<figure class="shot" data-f="arros" data-hd="img/collabs/project-arrose-01.webp" data-cap="Arrosé"><img src="img/collabs/thumbs/project-arrose-01.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Arrosé — 01"><figcaption>Arrosé</figcaption></figure>
+<figure class="shot" data-f="arros" data-hd="img/collabs/project-arrose-02.webp" data-cap="Arrosé"><img src="img/collabs/thumbs/project-arrose-02.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Arrosé — 02"><figcaption>Arrosé</figcaption></figure>
+<figure class="shot" data-f="arros" data-hd="img/collabs/project-arrose-03.webp" data-cap="Arrosé"><img src="img/collabs/thumbs/project-arrose-03.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Arrosé — 03"><figcaption>Arrosé</figcaption></figure>
+<figure class="shot" data-f="arros" data-hd="img/collabs/project-arrose-04.webp" data-cap="Arrosé"><img src="img/collabs/thumbs/project-arrose-04.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Arrosé — 04"><figcaption>Arrosé</figcaption></figure>
+<figure class="shot" data-f="arros" data-hd="img/collabs/project-arrose-05.webp" data-cap="Arrosé"><img src="img/collabs/thumbs/project-arrose-05.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Arrosé — 05"><figcaption>Arrosé</figcaption></figure>
+<figure class="shot" data-f="arros" data-hd="img/collabs/project-arrose-06.webp" data-cap="Arrosé"><img src="img/collabs/thumbs/project-arrose-06.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Arrosé — 06"><figcaption>Arrosé</figcaption></figure>
+<figure class="shot" data-f="arros" data-hd="img/collabs/project-arrose-07.webp" data-cap="Arrosé"><img src="img/collabs/thumbs/project-arrose-07.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Arrosé — 07"><figcaption>Arrosé</figcaption></figure>
+<figure class="shot" data-f="arros" data-hd="img/collabs/project-arrose-08.webp" data-cap="Arrosé"><img src="img/collabs/thumbs/project-arrose-08.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Arrosé — 08"><figcaption>Arrosé</figcaption></figure>
+<figure class="shot" data-f="arros" data-hd="img/collabs/project-arrose-09.webp" data-cap="Arrosé"><img src="img/collabs/thumbs/project-arrose-09.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Arrosé — 09"><figcaption>Arrosé</figcaption></figure>
+<figure class="shot" data-f="arros" data-hd="img/collabs/project-arrose-10.webp" data-cap="Arrosé"><img src="img/collabs/thumbs/project-arrose-10.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Arrosé — 10"><figcaption>Arrosé</figcaption></figure>
+<figure class="shot" data-f="arros" data-hd="img/collabs/project-arrose-11.webp" data-cap="Arrosé"><img src="img/collabs/thumbs/project-arrose-11.webp" width="1023" height="1200" loading="lazy" decoding="async" alt="Arrosé — 11"><figcaption>Arrosé</figcaption></figure>
+<figure class="shot" data-f="arros" data-hd="img/collabs/project-arrose-12.webp" data-cap="Arrosé"><img src="img/collabs/thumbs/project-arrose-12.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Arrosé — 12"><figcaption>Arrosé</figcaption></figure>
+<figure class="shot" data-f="arros" data-hd="img/collabs/project-arrose-13.webp" data-cap="Arrosé"><img src="img/collabs/thumbs/project-arrose-13.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Arrosé — 13"><figcaption>Arrosé</figcaption></figure>
+<figure class="shot" data-f="arros" data-hd="img/collabs/project-arrose-14.webp" data-cap="Arrosé"><img src="img/collabs/thumbs/project-arrose-14.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Arrosé — 14"><figcaption>Arrosé</figcaption></figure>
+<figure class="shot" data-f="anna" data-hd="img/collabs/project-anna-01.webp" data-cap="Anna"><img src="img/collabs/thumbs/project-anna-01.webp" width="1025" height="1200" loading="lazy" decoding="async" alt="Anna — 01"><figcaption>Anna</figcaption></figure>
+<figure class="shot" data-f="anna" data-hd="img/collabs/project-anna-02.webp" data-cap="Anna"><img src="img/collabs/thumbs/project-anna-02.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Anna — 02"><figcaption>Anna</figcaption></figure>
+<figure class="shot" data-f="anna" data-hd="img/collabs/project-anna-03.webp" data-cap="Anna"><img src="img/collabs/thumbs/project-anna-03.webp" width="748" height="1200" loading="lazy" decoding="async" alt="Anna — 03"><figcaption>Anna</figcaption></figure>
+<figure class="shot" data-f="anna" data-hd="img/collabs/project-anna-04.webp" data-cap="Anna"><img src="img/collabs/thumbs/project-anna-04.webp" width="959" height="1200" loading="lazy" decoding="async" alt="Anna — 04"><figcaption>Anna</figcaption></figure>
+<figure class="shot" data-f="anna" data-hd="img/collabs/project-anna-05.webp" data-cap="Anna"><img src="img/collabs/thumbs/project-anna-05.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Anna — 05"><figcaption>Anna</figcaption></figure>
+<figure class="shot" data-f="anna" data-hd="img/collabs/project-anna-06.webp" data-cap="Anna"><img src="img/collabs/thumbs/project-anna-06.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Anna — 06"><figcaption>Anna</figcaption></figure>
 </section>
-
 <div class="foot">
   <a href="index.html#contact">Want to collaborate?</a>
   <div class="sub">Let's talk</div>
 </div>
-
-<div class="lb" aria-hidden="true"><button class="lb-close" aria-label="Close">×</button>
-  <div class="lb-inner"><span class="lb-ph" style="position:absolute;inset:0"></span></div></div>
-
-<script>
-  // Filter
-  const bar=document.getElementById('bar'),shots=[...document.querySelectorAll('#wall .shot')];
-  bar.addEventListener('click',e=>{
-    const b=e.target.closest('button'); if(!b)return;
-    bar.querySelectorAll('button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
-    const f=b.dataset.f;
-    shots.forEach(s=>s.style.display=(f==='all'||s.dataset.cat===f)?'':'none');
-  });
-  // Lightbox
-  const lb=document.querySelector('.lb'),ph=lb.querySelector('.lb-ph'),cl=lb.querySelector('.lb-close');
-  function op(s){ph.className='lb-ph '+(s.dataset.t||'');lb.classList.add('open');lb.setAttribute('aria-hidden','false');cl.focus()}
-  function sh(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true')}
-  shots.forEach(s=>{s.addEventListener('click',()=>op(s));
-    s.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();op(s)}});});
-  cl.addEventListener('click',sh);lb.addEventListener('click',e=>{if(e.target===lb)sh()});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')sh()});
-</script>
+<div class="lb" id="lb" aria-hidden="true" role="dialog" aria-label="Photo viewer">
+  <button class="lb-x" aria-label="Close">×</button>
+  <button class="lb-prev" aria-label="Previous">←</button>
+  <button class="lb-next" aria-label="Next">→</button>
+  <figure><img id="lbimg" alt=""><figcaption><span id="lbcap"></span><span id="lbnum"></span></figcaption></figure>
+</div>
+<script src="assets/site.js"></script>
 </body>
 </html>
