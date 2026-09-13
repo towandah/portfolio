@@ -17,7 +17,7 @@ os.chdir(ROOT)
 YEAR = "2026"
 EMAIL = "marigui@gmail.com"
 INSTAGRAM = "https://www.instagram.com/terriendutout/"
-FORMSPREE = "https://formspree.io/f/YOUR_FORM_ID"   # <- replace with your Formspree endpoint
+FORMSPREE = "https://formspree.io/f/xnpqknje"
 
 # ---------------------------------------------------------------- sections
 # series: (file-name prefix, filter label). Several prefixes may share a label.
