@@ -136,3 +136,6 @@ footer .fine{color:#7C817F;font-size:12.5px;margin-top:44px}
 }
 @media(max-width:520px){.wall{--cols:2}.shot.s-82{width:100%}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+
+/* ---------- lowercase test: delete this block to go back to normal case ---------- */
+body,.nav .links,.nav .contact,.navtoggle,.allworks,.jump,.shead,.rhead .back,.cform label,.cform button,.foot .sub,footer .cols .h,.lb figcaption,.cpill,.shot figcaption{text-transform:lowercase}
