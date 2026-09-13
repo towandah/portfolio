@@ -25,3 +25,4 @@ git add -A && git commit -m "Update photos" && git push
 - `assets/site.css`, `assets/site.js` — shared styles and behaviour.
 - Portraits of the About block: `img/me-1.webp` and `img/me-2.webp`.
 - Contact form: set `FORMSPREE` in `tools/build.py` to your Formspree endpoint (`https://formspree.io/f/xxxx`) and rebuild.
+- Vanlife video reels: drop `img/video/vanlife-1.mp4`, `-2.mp4`, `-3.mp4` (9:16, ~10 s, muted loops, ideally under 3 MB each; optional posters `vanlife-1.webp`…) and rebuild. The block only appears when the files exist.

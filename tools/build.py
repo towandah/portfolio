@@ -27,13 +27,15 @@ SECTIONS = [
          cover="img/surf/thumbs/surf-13.webp", cta="A surf collab?",
          series=[("surf", "Atlantic"), ("surf-indo", "Indonesia")]),
     dict(slug="vanlife", title="Vanlife", teaser="Life on the road",
-         intro="Home is wherever we park. Slow mornings, long roads and the small rituals of living in a few square metres.",
+         pitch="Real van life, filmed from the inside: the roads, the spots, the mornings. Content that makes people want to book the trip.",
+         reels=["img/video/vanlife-1", "img/video/vanlife-2", "img/video/vanlife-3"],
+         intro="Home is wherever we park. Slow mornings, long roads, and the small rituals of living in a few square metres.",
          cover="img/vanlife/thumbs/vanlife-bardenas-04.webp", cta="A road trip to shoot?",
          series=[("vanlife-bardenas", "Bardenas"), ("vanlife-ireland", "Ireland"),
                  ("vanlife-east-coast", "US East Coast"), ("vanlife-west-coast", "US West Coast"),
                  ("vanlife-national-parks", "National Parks")]),
     dict(slug="landscapes", title="Landscapes", teaser="Land, sea & sky",
-         intro="Wild places, shot at eye level. Volcanic coasts, fall forests, jungle beaches — and the light in between.",
+         intro="Wild places, shot at eye level. Volcanic coasts, fall forests, jungle beaches, and the light in between.",
          cover="img/gallery/thumbs/landscapes-fall-us-10.webp", cta="Need a landscape series?",
          series=[("landscapes-canaries", "Canary Islands"), ("landscapes-costa-rica", "Costa Rica"),
                  ("landscapes-fall-us", "US Fall"), ("landscapes-thailand", "Thailand"),
@@ -45,7 +47,7 @@ SECTIONS = [
                  ("city-new-york", "New York"), ("landscapes-san-francisco", "San Francisco"),
                  ("city-vietnam", "Vietnam"), ("pastel", "Pastel"), ("city-misc", "Elsewhere")]),
     dict(slug="projects", title="Projects", teaser="Brand & people work",
-         intro="Selected work shot for and with brands and people — on location, in natural light.",
+         intro="Selected work shot for and with brands and people, on location, in natural light.",
          cover="img/projects/thumbs/project-martines-20.webp", cta="Want to collaborate?",
          series=[("project-martines", "Chez Martine"), ("project-arrose", "Arrosé"), ("project-anna", "Anna")]),
 ]
@@ -118,14 +120,14 @@ def lightbox():
 </html>
 """
 
-# Size pattern for the walls: full / 82 % / 66 % of the column, some pushed right.
-SIZES = ["", "s-82", "", "s-66 r", "s-82 r", "", "s-66", "", "s-82", "s-66 r", "", "s-82 r"]
+# Size pattern for the walls: mostly full width, one tile in four at 82 % (some pushed right).
+SIZES = ["", "", "", "s-82", "", "", "s-82 r", ""]
 
 def shot(p, label, i):
     cls = ("shot " + SIZES[i % len(SIZES)]).strip()
     return (f'<figure class="{cls}" data-hd="{p["hd"]}" data-cap="{html.escape(label)}">'
             f'<img src="{p["thumb"]}" width="{p["w"]}" height="{p["h"]}" loading="lazy" decoding="async" '
-            f'alt="{html.escape(label)} — {p["n"]:02d}"><figcaption>{html.escape(label)}</figcaption></figure>\n')
+            f'alt="{html.escape(label)} {p["n"]:02d}"><figcaption>{html.escape(label)}</figcaption></figure>\n')
 
 # ---------------------------------------------------------------- pages
 def build_section(sec, lib):
@@ -149,14 +151,26 @@ def build_section(sec, lib):
 </section>
 """)
     jump = "".join(f'<a href="#{slugify(l)}">{html.escape(l)}</a>' for l in order if groups[l])
-    page = head(f"{sec['title']} — Marigui", sec["intro"]) + topnav(sec["slug"]) + f"""
+    # optional video reels: <base>.mp4 (+ <base>.webp poster), 9:16, short muted loops
+    reels = [r for r in sec.get("reels", []) if os.path.exists(r + ".mp4")]
+    hero = ""
+    if reels:
+        cards = "".join(
+            f'<video class="reel" autoplay muted loop playsinline preload="metadata"'
+            f'{" poster=" + chr(34) + r + ".webp" + chr(34) if os.path.exists(r + ".webp") else ""}>'
+            f'<source src="{r}.mp4" type="video/mp4"></video>\n' for r in reels)
+        hero = f"""<section class="reels">
+{cards}</section>
+<div class="wrap"><p class="pitch">{html.escape(sec.get("pitch", ""))}</p></div>
+"""
+    page = head(f"{sec['title']} · Marigui", sec["intro"]) + topnav(sec["slug"]) + f"""
 <section class="rhead"><div class="wrap">
   <a class="back" href="index.html">← All works</a>
   <h1>{sec['title']}</h1>
   <p>{html.escape(sec['intro'])}</p>
   <nav class="jump">{jump}</nav>
 </div></section>
-{''.join(blocks)}<div class="foot">
+{hero}{''.join(blocks)}<div class="foot">
   <a href="index.html#contact">{html.escape(sec['cta'])}</a>
   <div class="sub">Let's talk</div>
 </div>
@@ -168,12 +182,12 @@ def build_section(sec, lib):
 def build_home(lib):
     tiles = "".join(
         f'<a class="tile" href="{s["slug"]}.html"><img src="{s["cover"]}" alt="{s["title"]}" loading="{"eager" if i < 3 else "lazy"}">'
-        f'<span class="label"><span class="t">{s["title"]}</span><span class="c">{html.escape(s["teaser"])}</span></span></a>\n'
+        f'<span class="label"><span class="t">{s["title"]}</span></span></a>\n'
         for i, s in enumerate(SECTIONS))
     featured = "".join(shot(p, "Selected", i) for i, p in enumerate(lib.get(FEATURED_PREFIX, [])))
     foot_links = "".join(f'<a href="{s["slug"]}.html">{s["title"]}</a>' for s in SECTIONS)
-    page = head("Marigui — Travel photographer & filmmaker",
-                "Surf, vanlife, landscapes and cities — photo and video shot slow, on location.") + topnav(home=True) + f"""
+    page = head("Marigui · Travel photographer & filmmaker",
+                "Surf, vanlife, landscapes and cities. Photo and video shot slow, on location.") + topnav(home=True) + f"""
 <section class="hero"><div class="wrap">
   <h1 class="wordmark">Marigui</h1>
   <p class="tagline">Far, slow, in frames.</p>
@@ -195,7 +209,7 @@ def build_home(lib):
   </div>
   <div>
     <h2>I photograph the road, at eye level.</h2>
-    <p>Surf, vanlife, wild places and cities — shot slow. Images made on location, off the beaten path, and edited with care.</p>
+    <p>Surf, vanlife, wild places and cities, shot slow. Images made on location, off the beaten path, and edited with care.</p>
   </div>
 </div></div></section>
 
@@ -203,7 +217,7 @@ def build_home(lib):
   <h2>Work together.</h2>
   <div class="offer-grid">
     <div><div class="num">01</div><h3>Brand content</h3><p>On-location reportage, photo and video, delivered ready to publish for your socials and campaigns.</p></div>
-    <div><div class="num">02</div><h3>Travel series</h3><p>Surf, outdoor, van, cities — themed series to license or adapt.</p></div>
+    <div><div class="num">02</div><h3>Travel series</h3><p>Surf, outdoor, van or city series to license or adapt.</p></div>
     <div><div class="num">03</div><h3>Video &amp; editing</h3><p>Short formats built for the web, shot light and edited with care.</p></div>
   </div>
 </div></section>
@@ -217,7 +231,7 @@ def build_home(lib):
     <form class="cform" action="{FORMSPREE}" method="POST">
       <label>Name<input type="text" name="name" required autocomplete="name"></label>
       <label>Email<input type="email" name="email" required autocomplete="email"></label>
-      <label>Message<textarea name="message" rows="5" required></textarea></label>
+      <label>Message<textarea name="message" rows="3" required></textarea></label>
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
       <button type="submit">Send</button>
     </form>
@@ -228,7 +242,7 @@ def build_home(lib):
       <a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a></div>
     <div><div class="h">Sections</div>{foot_links}</div>
   </div>
-  <div class="fine">© {YEAR} Marigui — Portfolio</div>
+  <div class="fine">© {YEAR} Marigui</div>
 </div></footer>
 <div class="cpill" id="cpill">See work</div>
 """ + lightbox()

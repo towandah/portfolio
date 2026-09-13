@@ -21,7 +21,7 @@
   var walls = Array.prototype.slice.call(document.querySelectorAll('.wall'));
   var shots = Array.prototype.slice.call(document.querySelectorAll('.wall .shot'));
   shots.forEach(function (s) { s.setAttribute('tabindex', '0'); s.setAttribute('role', 'button'); });
-  function frac(s) { return s.classList.contains('s-66') ? .66 : s.classList.contains('s-82') ? .82 : 1; }
+  function frac(s) { return s.classList.contains('s-82') ? .82 : 1; }
   function layoutWall(wall) {
     var n = parseInt(getComputedStyle(wall).getPropertyValue('--cols')) || 3;
     if (wall._cols === n) return;
