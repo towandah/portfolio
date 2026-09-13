@@ -25,15 +25,16 @@ SECTIONS = [
     dict(slug="surf", title="Surf", teaser="Line-ups & ocean",
          intro="Where the ocean sets the pace. Dawn sessions, empty line-ups, and the salt that stays on the lens.",
          cover="img/surf/thumbs/surf-13.webp", cta="A surf collab?",
-         series=[("surf", "Atlantic"), ("surf-indo", "Indonesia")]),
+         series=[("surf-indo", "Indonesia"), ("surf", "Atlantic")]),
     dict(slug="vanlife", title="Vanlife", teaser="Life on the road",
          pitch="Real van life, filmed from the inside: the roads, the spots, the mornings. Content that makes people want to book the trip.",
          reels=["img/video/vanlife-1", "img/video/vanlife-2", "img/video/vanlife-3"],
          intro="Home is wherever we park. Slow mornings, long roads, and the small rituals of living in a few square metres.",
          cover="img/vanlife/thumbs/vanlife-bardenas-04.webp", cta="A road trip to shoot?",
-         series=[("vanlife-bardenas", "Bardenas"), ("vanlife-ireland", "Ireland"),
-                 ("vanlife-east-coast", "US East Coast"), ("vanlife-west-coast", "US West Coast"),
-                 ("vanlife-national-parks", "National Parks")]),
+         cols=6,
+         series=[("vanlife-east-coast", "US East Coast"), ("vanlife-west-coast", "US West Coast"),
+                 ("vanlife-national-parks", "National Parks"), ("vanlife-bardenas", "Bardenas"),
+                 ("vanlife-ireland", "Ireland")]),
     dict(slug="landscapes", title="Landscapes", teaser="Land, sea & sky",
          intro="Wild places, shot at eye level. Volcanic coasts, fall forests, jungle beaches, and the light in between.",
          cover="img/gallery/thumbs/landscapes-fall-us-10.webp", cta="Need a landscape series?",
@@ -43,9 +44,9 @@ SECTIONS = [
     dict(slug="cities", title="Cities", teaser="Streets & skylines",
          intro="Cities walked, not toured. Bridges at golden hour, neon after dark, and the quiet corners in between.",
          cover="img/gallery/thumbs/city-new-york-13.webp", cta="A city story to tell?",
-         series=[("city-boston", "Boston"), ("baseball", "Boston"), ("city-chicago", "Chicago"),
-                 ("city-new-york", "New York"), ("landscapes-san-francisco", "San Francisco"),
-                 ("city-vietnam", "Vietnam"), ("pastel", "Pastel"), ("city-misc", "Elsewhere")]),
+         series=[("city-vietnam", "Vietnam"), ("pastel", "Pastel"), ("baseball", "Baseball"),
+                 ("city-boston", "Boston"), ("city-new-york", "New York"), ("city-chicago", "Chicago"),
+                 ("landscapes-san-francisco", "San Francisco"), ("city-misc", "Elsewhere")]),
     dict(slug="projects", title="Projects", teaser="Brand & people work",
          intro="Selected work shot for and with brands and people, on location, in natural light.",
          cover="img/projects/thumbs/project-martines-20.webp", cta="Want to collaborate?",
@@ -120,12 +121,8 @@ def lightbox():
 </html>
 """
 
-# Size pattern for the walls: mostly full width, one tile in four at 82 % (some pushed right).
-SIZES = ["", "", "", "s-82", "", "", "s-82 r", ""]
-
 def shot(p, label, i):
-    cls = ("shot " + SIZES[i % len(SIZES)]).strip()
-    return (f'<figure class="{cls}" data-hd="{p["hd"]}" data-cap="{html.escape(label)}">'
+    return (f'<figure class="shot" data-hd="{p["hd"]}" data-cap="{html.escape(label)}">'
             f'<img src="{p["thumb"]}" width="{p["w"]}" height="{p["h"]}" loading="lazy" decoding="async" '
             f'alt="{html.escape(label)} {p["n"]:02d}"><figcaption>{html.escape(label)}</figcaption></figure>\n')
 
@@ -146,7 +143,7 @@ def build_section(sec, lib):
         count += len(photos)
         blocks.append(f"""<section class="series" id="{slugify(label)}">
   <div class="shead"><span>{html.escape(label)}</span><span class="dot"></span><span>{k:02d}</span></div>
-  <div class="wall">
+  <div class="wall" style="--cols:{sec.get('cols', 5)}">
 {shots}  </div>
 </section>
 """)

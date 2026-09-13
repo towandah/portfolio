@@ -21,7 +21,6 @@
   var walls = Array.prototype.slice.call(document.querySelectorAll('.wall'));
   var shots = Array.prototype.slice.call(document.querySelectorAll('.wall .shot'));
   shots.forEach(function (s) { s.setAttribute('tabindex', '0'); s.setAttribute('role', 'button'); });
-  function frac(s) { return s.classList.contains('s-82') ? .82 : 1; }
   function layoutWall(wall) {
     var n = parseInt(getComputedStyle(wall).getPropertyValue('--cols')) || 3;
     if (wall._cols === n) return;
@@ -31,9 +30,8 @@
     for (var i = 0; i < n; i++) { var c = document.createElement('div'); c.className = 'col'; cols.push(c); heights.push(0); }
     items.forEach(function (s) {
       var im = s.querySelector('img'), r = (im.getAttribute('height') / im.getAttribute('width')) || 1;
-      var f = window.innerWidth <= 520 ? 1 : frac(s);
       var k = heights.indexOf(Math.min.apply(null, heights));
-      cols[k].appendChild(s); heights[k] += r * f + .06;
+      cols[k].appendChild(s); heights[k] += r + .04;
     });
     wall.querySelectorAll('.col').forEach(function (c) { c.remove(); });
     cols.forEach(function (c) { wall.appendChild(c); });
