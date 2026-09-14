@@ -210,7 +210,7 @@ def build_home(lib):
     <img src="img/me-2.webp" alt="Marigui" loading="lazy" width="1067" height="1600">
   </div>
   <div>
-    <h2>I photograph the road, at eye level.</h2>
+    <h2><span class="I">I</span> photograph the road, at eye level.</h2>
     <p>Surf, vanlife, wild places and cities, shot slow. Images made on location, off the beaten path, and edited with care. Currently on the road, overland across Asia to Europe.</p>
   </div>
 </div></div></section>
@@ -241,7 +241,7 @@ def build_home(lib):
     <form class="cform" action="{FORMSPREE}" method="POST">
       <label>Name<input type="text" name="name" required autocomplete="name"></label>
       <label>Email<input type="email" name="email" required autocomplete="email"></label>
-      <label>I'm looking for<select name="looking_for" required><option value="" selected disabled></option><option>A shoot</option><option>Content on your channels</option><option>Both</option></select></label>
+      <label><span><span class="I">I</span>'m looking for</span><select name="looking_for" required><option value="" selected disabled></option><option>A shoot</option><option>Content on your channels</option><option>Both</option></select></label>
       <label>Message<textarea name="message" rows="3" required></textarea></label>
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
       <button type="submit">Send</button>
