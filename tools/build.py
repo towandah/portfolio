@@ -188,7 +188,10 @@ def build_home(lib):
     page = head("Marigui · Travel photographer & filmmaker",
                 "Surf, vanlife, landscapes and cities. Photo and video shot slow, on location.") + topnav(home=True) + f"""
 <section class="hero"><div class="wrap">
-  <h1 class="wordmark">Marigui</h1>
+  <div class="hero-row">
+    <h1 class="wordmark">Marigui</h1>
+    <p class="claim">Photo &amp; video content, for your channels or mine.</p>
+  </div>
   <p class="tagline">Far, slow, in frames</p>
   <div class="allworks"><span>All works</span><span class="dot"></span><span>{YEAR}</span></div>
 </div>
