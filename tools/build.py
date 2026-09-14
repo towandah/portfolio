@@ -215,9 +215,9 @@ def build_home(lib):
 <section class="offer"><div class="wrap">
   <h2>Work together.</h2>
   <div class="offer-grid">
-    <div><div class="num">01</div><h3>Brand content</h3><p>On-location reportage, photo and video, delivered ready to publish for your socials and campaigns.</p></div>
-    <div><div class="num">02</div><h3>Travel series</h3><p>Surf, outdoor, van or city series to license or adapt.</p></div>
-    <div><div class="num">03</div><h3>Video &amp; editing</h3><p>Short formats built for the web, shot light and edited with care.</p></div>
+    <div><div class="num">01</div><h3>Brand content</h3><p>On-location shoots for brands: places, products and people, delivered ready to publish for your socials and campaigns.</p></div>
+    <div><div class="num">02</div><h3>Reels &amp; short video</h3><p>Vertical formats filmed on location, cut for Instagram and TikTok, hook to end card.</p></div>
+    <div><div class="num">03</div><h3>Editing &amp; colour</h3><p>Cutting and colour grading of what we shoot together, delivered web-ready.</p></div>
   </div>
 </div></section>
 
