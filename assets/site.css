@@ -48,7 +48,10 @@ button{font:inherit}
 
 .offer{border-top:1px solid var(--line);padding:clamp(52px,7vw,96px) 0}
 .offer h2{font-weight:700;font-size:clamp(30px,4.6vw,64px);letter-spacing:-.03em;margin-bottom:clamp(30px,4vw,52px)}
-.offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.6vw,44px)}
+.offer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,2.6vw,44px)}
+.audience{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:clamp(30px,4vw,52px);padding-top:18px;border-top:1px solid var(--line);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.audience a{color:var(--ink);border-bottom:1px solid var(--ink)}
+.audience .sep{width:7px;height:7px;background:var(--ink);opacity:.5}
 .offer-grid .num{font-family:"Bricolage Grotesque";color:var(--muted);font-size:14px;margin-bottom:14px}
 .offer-grid h3{font-weight:600;font-size:20px;letter-spacing:-.01em;margin:0 0 8px}
 .offer-grid p{margin:0;color:#42474A;font-size:14.5px;max-width:34ch}
@@ -60,6 +63,9 @@ footer .say{text-align:right}
 footer .lead{margin:14px 0 0 auto;color:#B9BEBC;font-size:14px;max-width:34ch}
 .cform{display:grid;gap:8px;width:100%}
 .cform label{display:grid;gap:2px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8A8F8D}
+.cform select{background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.28);color:var(--paper);font:inherit;font-size:13px;padding:5px 0;border-radius:0;outline:none;-webkit-appearance:none;appearance:none;cursor:pointer}
+.cform select option{color:var(--ink);background:var(--paper)}
+.cform select:focus{border-color:var(--paper)}
 .cform input,.cform textarea{background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.28);color:var(--paper);font:inherit;font-size:13px;padding:5px 0;border-radius:0;outline:none;resize:vertical;cursor:text}
 .cform textarea{min-height:56px}
 .cform input:focus,.cform textarea:focus{border-color:var(--paper)}
@@ -129,14 +135,14 @@ footer .fine{color:#7C817F;font-size:12.5px;margin-top:clamp(36px,5vw,56px);bord
   .nav .links,.nav .contact{display:none}.navtoggle{display:block}
   .nav.open .links{display:flex;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:14px;background:var(--paper);border-bottom:1px solid var(--line);padding:22px clamp(18px,4vw,44px)}
   .tiles{grid-template-columns:1fr 1fr}.tile{aspect-ratio:3/3.6}.tile:last-child{grid-column:1/-1;aspect-ratio:16/9}
-  .about .row{grid-template-columns:1fr}.offer-grid{grid-template-columns:1fr}
+  .about .row{grid-template-columns:1fr}.offer-grid{grid-template-columns:1fr 1fr}
   footer .talk{grid-template-columns:1fr}footer .say{text-align:left}footer .lead{margin-left:0}
   .reels{grid-template-columns:1fr 1fr}.reels .reel:nth-child(3){display:none}.pitch{text-align:left;margin-left:0}
   .wall{--cols:3!important}.wall.sel{--cols:2!important}
   .lb-prev,.lb-next{display:none}
 }
-@media(max-width:520px){.wall{--cols:2!important}}
+@media(max-width:520px){.wall{--cols:2!important}.offer-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
 
 /* ---------- lowercase test: delete this block to go back to normal case ---------- */
-body,.nav .links,.nav .contact,.navtoggle,.allworks,.jump,.shead,.rhead .back,.cform label,.cform button,.foot .sub,footer .cols .h,.lb figcaption,.cpill,.shot figcaption{text-transform:lowercase}
+body,.nav .links,.nav .contact,.navtoggle,.allworks,.jump,.shead,.rhead .back,.cform label,.cform button,.foot .sub,footer .cols .h,.lb figcaption,.cpill,.shot figcaption,.audience{text-transform:lowercase}
