@@ -23,7 +23,7 @@ FORMSPREE = "https://formspree.io/f/xnpqknje"
 # series: (file-name prefix, filter label). Several prefixes may share a label.
 SECTIONS = [
     dict(slug="surf", title="Surf", teaser="Line-ups & ocean",
-         intro="Where the ocean sets the pace. Dawn sessions, empty line-ups, and the salt that stays on the lens.",
+         intro="Where the ocean sets the pace. Dawn sessions, empty line-ups, good surfing.",
          cover="img/surf/thumbs/surf-indo-03.webp", cta="A surf collab?",
          series=[("surf-indo", "Indonesia"), ("surf", "Atlantic")]),
     dict(slug="vanlife", title="Vanlife", teaser="Life on the road",
