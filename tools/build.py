@@ -15,7 +15,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
 YEAR = "2026"
-EMAIL = "marigui@gmail.com"
+EMAIL = "hello@marigui.fr"
 INSTAGRAM = "https://www.instagram.com/terriendutout/"
 FORMSPREE = "https://formspree.io/f/xnpqknje"
 
