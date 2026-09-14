@@ -27,8 +27,8 @@ SECTIONS = [
          cover="img/surf/thumbs/surf-indo-03.webp", cta="A surf collab?",
          series=[("surf-indo", "Indonesia"), ("surf", "Atlantic")]),
     dict(slug="vanlife", title="Vanlife", teaser="Life on the road",
-         pitch="Real van life, filmed from the inside: the roads, the spots, the mornings. Content that makes people want to book the trip.",
-         reels=["img/video/vanlife-1", "img/video/vanlife-2", "img/video/vanlife-3"],
+         pitch="Real van life, filmed from the inside: the roads, the spots. Content that makes people want to book the trip.",
+         reels=["img/video/vanlife-1", "img/video/vanlife-3", "img/video/vanlife-2"],
          intro="Home is wherever we park. Slow mornings, long roads, and the small rituals of living in a few square metres.",
          cover="img/vanlife/thumbs/vanlife-bardenas-08.webp", cta="A road trip to shoot?",
          cols=6,
@@ -156,9 +156,11 @@ def build_section(sec, lib):
             f'<video class="reel" autoplay muted loop playsinline preload="metadata"'
             f'{" poster=" + chr(34) + r + ".webp" + chr(34) if os.path.exists(r + ".webp") else ""}>'
             f'<source src="{r}.mp4" type="video/mp4"></video>\n' for r in reels)
-        hero = f"""<section class="reels">
-{cards}</section>
-<div class="wrap"><p class="pitch">{html.escape(sec.get("pitch", ""))}</p></div>
+        hero = f"""<section class="reelswrap">
+<div class="reels">
+{cards}</div>
+<p class="pitch">{html.escape(sec.get("pitch", ""))}</p>
+</section>
 """
     page = head(f"{sec['title']} · Marigui", sec["intro"]) + topnav(sec["slug"]) + f"""
 <section class="rhead"><div class="wrap">
@@ -187,7 +189,7 @@ def build_home(lib):
                 "Surf, vanlife, landscapes and cities. Photo and video shot slow, on location.") + topnav(home=True) + f"""
 <section class="hero"><div class="wrap">
   <h1 class="wordmark">Marigui</h1>
-  <p class="tagline">Far, slow, in frames.</p>
+  <p class="tagline">Far, slow, in frames</p>
   <div class="allworks"><span>All works</span><span class="dot"></span><span>{YEAR}</span></div>
 </div>
 <div class="tiles">
@@ -221,7 +223,13 @@ def build_home(lib):
 
 <footer id="contact"><div class="wrap">
   <div class="talk">
-    <div>
+    <div class="cols">
+      <div><div class="h">Contact</div>
+        <a href="mailto:{EMAIL}">{EMAIL}</a>
+        <a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a></div>
+      <div><div class="h">Sections</div>{foot_links}</div>
+    </div>
+    <div class="say">
       <h2 class="cta">Let's talk →</h2>
       <p class="lead">A brand, a trip, a story to shoot? Drop me a line.</p>
     </div>
@@ -232,12 +240,6 @@ def build_home(lib):
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
       <button type="submit">Send</button>
     </form>
-  </div>
-  <div class="cols">
-    <div><div class="h">Contact</div>
-      <a href="mailto:{EMAIL}">{EMAIL}</a>
-      <a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a></div>
-    <div><div class="h">Sections</div>{foot_links}</div>
   </div>
   <div class="fine">© {YEAR} Marigui</div>
 </div></footer>
