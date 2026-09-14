@@ -89,3 +89,24 @@
     if (Math.abs(dx) > 40) show(dx < 0 ? cur + 1 : cur - 1);
   });
 })();
+
+/* Reels vanlife : jouer quand visible, mettre en pause hors écran (fiabilité + batterie) */
+(function(){
+  function initReels(){
+    var reels = document.querySelectorAll('video.reel');
+    if(!reels.length) return;
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.play().catch(function(){}); }
+          else { e.target.pause(); }
+        });
+      }, {threshold:0.2});
+      reels.forEach(function(v){ io.observe(v); });
+    } else {
+      reels.forEach(function(v){ v.play().catch(function(){}); });
+    }
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', initReels); }
+  else { initReels(); }
+})();

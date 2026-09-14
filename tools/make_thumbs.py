@@ -12,7 +12,7 @@ from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
-MAXE, Q = 800, 78
+MAXE, Q = 640, 72
 force = "--force" in sys.argv
 n = 0
 for src in sorted(glob.glob("img/*/*.webp")):
