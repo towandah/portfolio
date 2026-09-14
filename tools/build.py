@@ -208,7 +208,7 @@ def build_home(lib):
   </div>
   <div>
     <h2>I photograph the road, at eye level.</h2>
-    <p>Surf, vanlife, wild places and cities, shot slow. Images made on location, off the beaten path, and edited with care. Currently on the road, overland from Da Nang to Paris.</p>
+    <p>Surf, vanlife, wild places and cities, shot slow. Images made on location, off the beaten path, and edited with care. Currently on the road, overland across Asia to Europe.</p>
   </div>
 </div></div></section>
 
