@@ -198,6 +198,17 @@ def build_home(lib):
 </div>
 <div class="tiles">
 {tiles}</div></section>
+<section class="offer"><div class="wrap">
+  <h2>Work together.</h2>
+  <div class="offer-grid">
+    <div><div class="num">01</div><h3>Brand content</h3><p>On-location shoots for brands: places, products and people, delivered ready to publish for your socials and campaigns.</p></div>
+    <div><div class="num">02</div><h3>Reels &amp; short video</h3><p>Vertical formats filmed on location, cut for Instagram and TikTok, hook to end card.</p></div>
+    <div><div class="num">03</div><h3>Editing &amp; colour</h3><p>Cutting and colour grading of what we shoot together, delivered web-ready.</p></div>
+    <div><div class="num">04</div><h3>On my channels</h3><p>Posts and reels published on @terriendutout, for a surf, van and outdoor audience that follows the road. Shoot and distribution in one collab.</p></div>
+  </div>
+  <div class="audience"><a href="{INSTAGRAM}" target="_blank" rel="noopener">@terriendutout</a><span class="sep"></span><span>2 to 6k views per post</span><span class="sep"></span><span>on the road, Asia to Europe, 2026/2027</span></div>
+</div></section>
+
 
 <section class="selected"><div class="wrap">
   <div class="allworks"><span>Selected</span><span class="dot"></span><span>A few favourites</span></div>
@@ -215,17 +226,6 @@ def build_home(lib):
     <p>Surf, vanlife, wild places and cities, shot slow. Images made on location, off the beaten path, and edited with care. Currently on the road, overland across Asia to Europe.</p>
   </div>
 </div></div></section>
-
-<section class="offer"><div class="wrap">
-  <h2>Work together.</h2>
-  <div class="offer-grid">
-    <div><div class="num">01</div><h3>Brand content</h3><p>On-location shoots for brands: places, products and people, delivered ready to publish for your socials and campaigns.</p></div>
-    <div><div class="num">02</div><h3>Reels &amp; short video</h3><p>Vertical formats filmed on location, cut for Instagram and TikTok, hook to end card.</p></div>
-    <div><div class="num">03</div><h3>Editing &amp; colour</h3><p>Cutting and colour grading of what we shoot together, delivered web-ready.</p></div>
-    <div><div class="num">04</div><h3>On my channels</h3><p>Posts and reels published on @terriendutout, for a surf, van and outdoor audience that follows the road. Shoot and distribution in one collab.</p></div>
-  </div>
-  <div class="audience"><a href="{INSTAGRAM}" target="_blank" rel="noopener">@terriendutout</a><span class="sep"></span><span>2 to 6k views per post</span><span class="sep"></span><span>on the road, Asia to Europe, 2026/2027</span></div>
-</div></section>
 
 <footer id="contact"><div class="wrap">
   <div class="talk">
