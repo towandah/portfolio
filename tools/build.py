@@ -160,7 +160,7 @@ def build_section(sec, lib):
             f'{" poster=" + chr(34) + "/" + r + ".webp" + chr(34) if os.path.exists(r + ".webp") else ""}>'
             f'<source src="/{r}.mp4" type="video/mp4"></video>\n' for r in reels)
         hero = f"""<section class="reelswrap">
-<div class="reels">
+<div class="reels reels-{sec['slug']}">
 {cards}</div>
 <p class="pitch">{html.escape(sec.get("pitch", ""))}</p>
 </section>
