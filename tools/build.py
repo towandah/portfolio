@@ -40,7 +40,7 @@ SECTIONS = [
     dict(slug="landscapes", title="Landscapes", teaser="Land, sea & sky",
          intro="Wild places, shot at eye level. Volcanic coasts, fall forests, jungle beaches, and the light in between.",
          cover="img/gallery/thumbs/landscapes-thailand-11.webp", cta="Need a landscape series?",
-         series=[("landscapes-canaries", "Canary Islands"), ("landscapes-costa-rica", "Costa Rica"),
+         series=[("landscapes-canaries", "Canary Islands"),
                  ("landscapes-fall-us", "US Fall"), ("landscapes-thailand", "Thailand"),
                  ("landscapes-misc", "Elsewhere")]),
     dict(slug="cities", title="Cities", teaser="Streets & skylines",
