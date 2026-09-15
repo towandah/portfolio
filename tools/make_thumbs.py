@@ -16,6 +16,8 @@ MAXE, Q = 640, 72
 force = "--force" in sys.argv
 n = 0
 for src in sorted(glob.glob("img/*/*.webp")):
+    if "/video/" in src:            # posters video : pas de miniature
+        continue
     folder = os.path.dirname(src)
     dst = os.path.join(folder, "thumbs", os.path.basename(src))
     if os.path.exists(dst) and not force:
