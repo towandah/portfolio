@@ -90,7 +90,7 @@ def head(title, desc):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="/assets/site.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23FFCB3D' stroke='%23111' stroke-width='2'/%3E%3Ccircle cx='11' cy='13' r='1.8' fill='%23111'/%3E%3Ccircle cx='21' cy='13' r='1.8' fill='%23111'/%3E%3Cpath d='M10 19 Q16 24.5 22 19' stroke='%23111' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -98,12 +98,12 @@ def head(title, desc):
 
 def topnav(current=None, home=False):
     links = "".join(
-        f'<a href="{s["slug"]}.html"{" class=on" if s["slug"] == current else ""}>{s["title"]}</a>'
+        f'<a href="/{s["slug"]}/"{" class=on" if s["slug"] == current else ""}>{s["title"]}</a>'
         for s in SECTIONS)
-    about = '<a href="#about">About</a>' if home else '<a href="index.html#about">About</a>'
-    contact = "#contact" if home else "index.html#contact"
+    about = '<a href="#about">About</a>' if home else '<a href="/#about">About</a>'
+    contact = "#contact" if home else "/#contact"
     return f"""<header class="nav" id="nav"><div class="wrap">
-  <a class="mark" href="index.html">Marigui</a>
+  <a class="mark" href="/">Marigui</a>
   <nav class="links">{links}{about}</nav>
   <a class="contact" href="{contact}">Contact</a>
   <button class="navtoggle" aria-label="Menu" aria-expanded="false">Menu</button>
@@ -117,14 +117,14 @@ def lightbox():
   <button class="lb-next" aria-label="Next">→</button>
   <figure><img id="lbimg" alt=""><figcaption><span id="lbcap"></span><span id="lbnum"></span></figcaption></figure>
 </div>
-<script src="assets/site.js"></script>
+<script src="/assets/site.js"></script>
 </body>
 </html>
 """
 
 def shot(p, label, i):
-    return (f'<figure class="shot" data-hd="{p["hd"]}" data-cap="{html.escape(label)}">'
-            f'<img src="{p["thumb"]}" width="{p["w"]}" height="{p["h"]}" loading="lazy" decoding="async" '
+    return (f'<figure class="shot" data-hd="/{p["hd"]}" data-cap="{html.escape(label)}">'
+            f'<img src="/{p["thumb"]}" width="{p["w"]}" height="{p["h"]}" loading="lazy" decoding="async" '
             f'alt="{html.escape(label)} {p["n"]:02d}"><figcaption>{html.escape(label)}</figcaption></figure>\n')
 
 # ---------------------------------------------------------------- pages
@@ -155,8 +155,8 @@ def build_section(sec, lib):
     if reels:
         cards = "".join(
             f'<video class="reel" autoplay muted loop playsinline preload="metadata"'
-            f'{" poster=" + chr(34) + r + ".webp" + chr(34) if os.path.exists(r + ".webp") else ""}>'
-            f'<source src="{r}.mp4" type="video/mp4"></video>\n' for r in reels)
+            f'{" poster=" + chr(34) + "/" + r + ".webp" + chr(34) if os.path.exists(r + ".webp") else ""}>'
+            f'<source src="/{r}.mp4" type="video/mp4"></video>\n' for r in reels)
         hero = f"""<section class="reelswrap">
 <div class="reels">
 {cards}</div>
@@ -165,27 +165,29 @@ def build_section(sec, lib):
 """
     page = head(f"{sec['title']} · Marigui", sec["intro"]) + topnav(sec["slug"]) + f"""
 <section class="rhead"><div class="wrap">
-  <a class="back" href="index.html">← All works</a>
+  <a class="back" href="/">← All works</a>
   <h1>{sec['title']}</h1>
   <p>{html.escape(sec['intro'])}</p>
   <nav class="jump">{jump}</nav>
 </div></section>
 {hero}{''.join(blocks)}<div class="foot">
-  <a href="index.html#contact">{html.escape(sec['cta'])}</a>
+  <a href="/#contact">{html.escape(sec['cta'])}</a>
   <div class="sub">Let's talk</div>
 </div>
 """ + lightbox()
-    with open(f"{sec['slug']}.html", "w") as fh:
+    out_path = f"{sec['slug']}/index.html"
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    with open(out_path, "w") as fh:
         fh.write(page)
     return count
 
 def build_home(lib):
     tiles = "".join(
-        f'<a class="tile" href="{s["slug"]}.html"><img src="{s["cover"]}" alt="{s["title"]}" loading="{"eager" if i < 3 else "lazy"}">'
+        f'<a class="tile" href="/{s["slug"]}/"><img src="/{s["cover"]}" alt="{s["title"]}" loading="{"eager" if i < 3 else "lazy"}">'
         f'<span class="label"><span class="t">{s["title"]}</span></span></a>\n'
         for i, s in enumerate(SECTIONS))
     featured = "".join(shot(p, "Selected", i) for i, p in enumerate(lib.get(FEATURED_PREFIX, [])))
-    foot_links = "".join(f'<a href="{s["slug"]}.html">{s["title"]}</a>' for s in SECTIONS)
+    foot_links = "".join(f'<a href="/{s["slug"]}/">{s["title"]}</a>' for s in SECTIONS)
     page = head("Marigui · Travel photographer & filmmaker",
                 "Surf, vanlife, landscapes and cities. Photo and video shot slow, on location.") + topnav(home=True) + f"""
 <section class="hero"><div class="wrap">
@@ -218,8 +220,8 @@ def build_home(lib):
 
 <section class="about" id="about"><div class="wrap"><div class="row">
   <div class="portraits">
-    <img src="img/me-1.webp" alt="Marigui" loading="lazy" width="1067" height="1600">
-    <img src="img/me-2.webp" alt="Marigui" loading="lazy" width="1067" height="1600">
+    <img src="/img/me-1.webp" alt="Marigui" loading="lazy" width="1067" height="1600">
+    <img src="/img/me-2.webp" alt="Marigui" loading="lazy" width="1067" height="1600">
   </div>
   <div>
     <h2><span class="I">I</span> photograph the road, at eye level.</h2>
