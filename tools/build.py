@@ -52,7 +52,7 @@ SECTIONS = [
     dict(slug="projects", title="Projects", teaser="Brand & people work",
          intro="Selected work shot for and with brands and people, on location, in natural light.",
          cover="img/projects/thumbs/project-martines-20.webp", cta="Want to collaborate?",
-         series=[("project-martines", "Chez Martine"), ("project-arrose", "Arrosé"), ("project-anna", "Anna")]),
+         series=[("project-martines", "Chez Martine"), ("project-arrose", "Arrosé"), ("project-anna", "Anna & Étienne")]),
 ]
 FEATURED_PREFIX = "featured"
 
